@@ -29,15 +29,25 @@ class Login extends BaseController
             return redirect()->to('/login');
         }
 
-        // For now, we'll use a simple hardcoded check
-        // In a real application, you would check against a database
-        if ($username === 'admin' && $password === 'password') {
-            // Set session data
+        // Load database
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+
+        // Find user by username
+        $user = $builder->where('username', $username)->get()->getRowArray();
+
+        if ($user && password_verify($password, $user['password'])) {
+            // Set session data using the specific attributes
             session()->set([
-                'user_id' => 1,
-                'username' => $username,
+                'user_id' => $user['user_id'],
+                'username' => $user['username'],
+                'role' => $user['role'],
                 'logged_in' => true
             ]);
+            
+            // Update last login time
+            $builder->where('user_id', $user['user_id'])
+                   ->update(['updated_at' => date('Y-m-d H:i:s')]);
             
             // Redirect to dashboard
             return redirect()->to('/dashboard');
