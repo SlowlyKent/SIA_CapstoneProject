@@ -1,0 +1,212 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Login container */
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Logo styling */
+.logo {
+    color: #2c3e50;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
+/* Login title */
+.login-title {
+    color: #34495e;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* Error and success messages */
+.error-message {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #00b894, #00a085);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Form styling */
+form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Input container with icon */
+.input-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 15px;
+    color: #74b9ff;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.input-icon input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e0e6ed;
+    border-radius: 12px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-icon input:focus {
+    border-color: #74b9ff;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.input-icon input::placeholder {
+    color: #a0a0a0;
+    font-style: italic;
+}
+
+/* Login button */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3);
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #0984e3, #74b9ff);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.4);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3);
+}
+
+.login-btn i {
+    margin-right: 8px;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .logo {
+        font-size: 28px;
+    }
+    
+    .login-title {
+        font-size: 24px;
+    }
+    
+    .input-icon input {
+        padding: 12px 12px 12px 40px;
+        font-size: 14px;
+    }
+    
+    .login-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* Loading state for button */
+.login-btn.loading {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-btn.loading:hover {
+    background: #bdc3c7;
+    transform: none;
+    box-shadow: none;
+}
