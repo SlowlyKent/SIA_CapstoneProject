@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: permission-denied.php');
-    exit();
-}
+// Use CodeIgniter's session service (session is already started by framework)
+$role = session()->get('role');
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +24,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         }
         .sidebar {
             width: 250px;
-            background-color: #2c3e50;
+            background-color:#051340;
             color: white;
             padding: 20px;
         }
@@ -44,7 +41,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             margin-bottom: 10px;
         }
         .sidebar a {
-            color: #ecf0f1;
+            color:rgb(255, 255, 255);
             text-decoration: none;
             display: block;
             padding: 10px;
@@ -52,12 +49,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             transition: background-color 0.3s;
         }
         .sidebar a:hover {
-            background-color: #34495e;
+            background-color:#f6416c;
         }
         .logout-btn {
             position: absolute;
             bottom: 20px;
-            background-color: #e74c3c;
+            background-color:#E10600FF;
             padding: 10px 20px;
             border-radius: 5px;
         }
@@ -69,7 +66,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             padding: 20px;
         }
         .welcome-section {
-            background: white;
+            background: #dcdcde;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -82,7 +79,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             margin-bottom: 20px;
         }
         .stat-card {
-            background: white;
+            background: #dcdcde;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -104,20 +101,20 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
         <div class="sidebar">
             <h2>FPBG<br>STOCK</h2>
             <ul>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                    <li><a href="/cashiering-admin"><i class="fas fa-cash-register"></i> Cashiering</a></li>
-                    <li><a href="/inventory"><i class="fas fa-boxes"></i> Inventory</a></li>
-                    <li><a href="/stock_in"><i class="fas fa-arrow-down"></i> Stock In</a></li>
-                    <li><a href="/stock_out"><i class="fas fa-arrow-up"></i> Transactions</a></li>
-                    <li><a href="/create"><i class="fas fa-user-plus"></i> Create User</a></li>
-                    <li><a href="/read"><i class="fas fa-users"></i> View Users</a></li>
-                    <li><a href="/check_expiration"><i class="fas fa-exclamation-triangle"></i> Check Expiration</a></li>
-                <?php elseif ($_SESSION['role'] === 'staff'): ?>
-                    <li><a href="/cashiering-staff"><i class="fas fa-cash-register"></i> Cashiering</a></li>
+                <?php if ($role === 'admin'): ?>
+                    <li><a href="<?= site_url('dashboard') ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="<?= site_url('cashiering-admin') ?>"><i class="fas fa-cash-register"></i> Cashiering</a></li>
+                    <li><a href="<?= site_url('inventory') ?>"><i class="fas fa-boxes"></i> Inventory</a></li>
+                    <li><a href="<?= site_url('stock_in') ?>"><i class="fas fa-arrow-down"></i> Stock In</a></li>
+                    <li><a href="<?= site_url('stock_out') ?>"><i class="fas fa-arrow-up"></i> Transactions</a></li>
+                    <li><a href="<?= site_url('create') ?>"><i class="fas fa-user-plus"></i> Create User</a></li>
+                    <li><a href="<?= site_url('read') ?>"><i class="fas fa-users"></i> View Users</a></li>
+                    <li><a href="<?= site_url('check_expiration') ?>"><i class="fas fa-exclamation-triangle"></i> Check Expiration</a></li>
+                <?php elseif ($role === 'staff'): ?>
+                    <li><a href="<?= site_url('cashiering-staff') ?>"><i class="fas fa-cash-register"></i> Cashiering</a></li>
                 <?php endif; ?>
             </ul>
-            <a href="/logout" class="logout-btn">
+            <a href="<?= site_url('logout') ?>" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
         </div>
@@ -152,11 +149,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
                 <h3>Quick Actions</h3>
                 <p>This is a basic dashboard. The system is now properly configured with:</p>
                 <ul>
-                    <li>✅ Login Controller with authentication</li>
-                    <li>✅ Session management</li>
-                    <li>✅ Proper routing</li>
-                    <li>✅ Error handling and flash messages</li>
-                    <li>✅ Logout functionality</li>
+                    <li> Login Controller with authentication</li>
+                    <li> Session management</li>
+                    <li> Proper routing</li>
+                    <li> Error handling and flash messages</li>
+                    <li> Logout functionality</li>
                 </ul>
                 <p><strong>Test credentials:</strong> Username: <code>admin</code>, Password: <code>password</code></p>
             </div>
